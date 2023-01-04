@@ -29,17 +29,16 @@ while GAME_ON and len(LIST_OF_ANSWERS) < 50:
         text.write(f"{answer}", font=FONT)
         SCORE += 1
     elif answer == "Check" or answer == "check":
-        for state in states_list:
-            if state not in LIST_OF_ANSWERS:
-                STATES_TO_LEARN.append(state)
+        STATES_TO_LEARN = [state for state in states_list if state not in LIST_OF_ANSWERS]
+        for item in STATES_TO_LEARN:
+            missing_state = DATA[DATA.state == item]
+            text.goto(int(missing_state.x), int(missing_state.y))
+            text.write(f"{item}", font=FONT)
     elif answer == "Exit" or answer == "exit":
         break
 
 
 
-
-
-#dokończyć - eksport do csv nieodgadniętych stanów i możliwość wyświetlenia wszystkich odpowiedzi
 
 
 
